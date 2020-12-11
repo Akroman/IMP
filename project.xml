@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project outputprefix="Mors_decoder">
+
+    <!--  Project description -->
+    <name>Dekodér Morseovy abecedy</name>
+    <author>Matěj Hlávka</author>
+    <authoremail>xhlavk08@stud.fit.vutbr.cz</authoremail>
+    <revision>20090201</revision>
+    <description>
+      Aplikace umožňuje pomocí klávesnice kitu zadávat znaky Morseovy abecedy a vypisovat je na LCD displej
+    </description>
+ 
+    <!--  MCU part -->
+    <mcu>
+        <include>mcu/libs/lcd/package.xml</include>
+        <include>mcu/libs/keyboard/package.xml</include>
+        <file>main.c</file>
+    </mcu>
+
+    <!-- FPGA part -->
+    <fpga>
+      <include>fpga/ctrls/lcd/package.xml</include>
+      <include>fpga/ctrls/keyboard/package.xml</include>
+      <file>top_level.vhd</file>
+    </fpga>
+
+</project>
