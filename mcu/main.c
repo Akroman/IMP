@@ -1,10 +1,18 @@
+/**
+ * Projekt do předmětu IMP
+ * Název projektu: Dekodér Morseovy abecedy
+ * Autor: Matěj Hlávka
+ * Login: xhlavk08
+ * Email: xhlavk08@stud.fit.vutbr.cz
+ */
+
 #include <fitkitlib.h>
 #include <keyboard/keyboard.h>
 #include <lcd/display.h>
 #include <string.h>
 
 /**
- * Konstanty pro retezce znaku morseeova kodu reprezentujici znaky normalni abecedy
+ * Konstanty pro retezce znaku Morseova kodu reprezentujici znaky normalni abecedy
  */
 #define MORSE_A ".-"
 #define MORSE_B "-..."
@@ -45,7 +53,7 @@
 #define MORSE_9 "----."
 
 /**
- * Konstanty pro navratove hodnoty funkce dekodujici morseeuv kod
+ * Konstanty pro navratove hodnoty funkce dekodujici Morseuv kod
  */
 #define VALID_MORSE_CODE 1
 #define NOT_VALID_MORSE_CODE 0
@@ -54,8 +62,8 @@
  * Konstanty pro casove citace
  */
 #define MORSE_CODE_DOT_TIME 5000
-#define NEW_LETTER_TIME 10000
-#define NEW_WORD_TIME 30000
+#define NEW_LETTER_TIME 20000
+#define NEW_WORD_TIME 50000
 
 
 /**
@@ -73,10 +81,7 @@ void print_user_help(void)
  */
 unsigned char decode_user_cmd(char *cmd_ucase, char *cmd)
 {
-	if (strcmp4(cmd_ucase, "INIT")) {
-		LCD_init();
-		return USER_COMMAND;
-	} else if (strcmp5(cmd_ucase, "CLEAR")) {
+	if (strcmp5(cmd_ucase, "CLEAR")) {
 		LCD_clear();
 		return USER_COMMAND;
 	}
@@ -248,10 +253,7 @@ int main(void)
 		// Smazani znaku z displeje a vynulovani promennych
 		} else if (pressedKey == '#') {
 			LCD_clear();
-			morseCodeIndex = 0;
-			idleCounter = 0;
-			morseCodeCounter = 0;
-			memset(morseCode, 0, sizeof morseCode);
+			recievedChar = 0;
 		// Nebyl zmacknut zadny znak nebo je zmacknuty znak, ktery nas nezajima
 		} else {
 			/** 
